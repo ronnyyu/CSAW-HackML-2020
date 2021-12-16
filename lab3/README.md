@@ -1,4 +1,4 @@
-# Lab 3
+# [Lab 3](https://github.com/ronnyyu/CSAW-HackML-2020/tree/master/lab3)
 
 ```bash
 ├── data 
@@ -39,13 +39,23 @@ Pruning:
 
 Evaluating:
 1. python eval.py <bd_model_file> <b_prime_model_file> <image_file>
-   
+  
    By default, we use the pretrained models (bd_net.h5 and b_prime_model_0.02.h5) and the first image of the bd_test.h5.
 
-Accuracy Image:
-![Accuracy Image](./acc.png)
 
-## VI. Problems and Solutions
+## III. Report
+1. Accuracy Image:
+![Accuracy Image](./acc.png)
+   
+2. Please also report attack success rate for X=30%
+
+   15.41
+   
+3. Finally, in your report, also comment on whether the pruning defense works for this model? If not, why not?
+   
+   From the accuracy image we know that the clean accuracy is close to attack success rate, which means the pruning defense doesn't work very well for this model. That may be caused by aware-attack and we delete some valid neurons. And I think it would be better if we could try to use file-pruning defense. 
+
+## IV. Problems and Solutions
 1. **import matplotlib error**
 
    RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework. See the Python documentation for more information on installing Python as a framework on Mac OS X. Please either reinstall Python as a framework, or try one of the other backends. If you are using (Ana)Conda please install python.app and replace the use of 'python' with 'pythonw'. See 'Working with Matplotlib on OSX' in the Matplotlib FAQ for more information.
@@ -53,7 +63,7 @@ Accuracy Image:
    Solution: add `backend: TkAgg` into `~/.matplotlib/matplotlibrc`.
 
 
-## VII. Reference
+## V. Reference
 1. [Stackoverflow: How to add and remove new layers in keras after loading weights?](https://stackoverflow.com/questions/41668813/how-to-add-and-remove-new-layers-in-keras-after-loading-weights)
 2. [Stackoverflow: RuntimeError: Python is not installed as a framework](https://stackoverflow.com/questions/34977388/matplotlib-runtimeerror-python-is-not-installed-as-a-framework)
 

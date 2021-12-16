@@ -47,7 +47,7 @@ ascending_sorted_idx_list = np.argsort(last_pooling_output)
 clean_accuracy_list = []
 attack_success_rate_list = []
 fraction_list = []
-x_list = [.02, .04, .10]
+x_list = [.02, .04, .10, .30]
 x_i = 0
 
 for idx, del_idx in enumerate(ascending_sorted_idx_list):
@@ -74,8 +74,11 @@ for idx, del_idx in enumerate(ascending_sorted_idx_list):
 
     cl_val_pred = np.argmax(b_prime_model.predict(cl_val_x), axis=1)
     val_acc = accuracy_score(cl_val_y, cl_val_pred)
-    if x_i < 3 and acc - val_acc > x_list[x_i]:
+    if x_i < len(x_list) and acc - val_acc > x_list[x_i]:
         b_prime_model.save(b_prime_model_filename % x_list[x_i])
+        # .30
+        if x_i == 3:
+            print('-' * 5, attack_success_rate)
         x_i += 1
 
     print('=' * 5, 'deleting layer: %d/%d, time cost: %.2fs' % (idx, len(ascending_sorted_idx_list), del_end_time-del_start_time))
